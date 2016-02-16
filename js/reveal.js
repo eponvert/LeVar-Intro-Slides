@@ -139,6 +139,12 @@
 			// Parallax background size
 			parallaxBackgroundSize: '', // CSS syntax, e.g. "3000px 2000px"
 
+			// Parallax background position
+			parallaxBackgroundPosition: '', // CSS syntax, e.g. "bottom right"
+
+			// Parallax background repeat
+			parallaxBackgroundRepeat: '', // CSS syntax, e.g. "no-repeat"
+
 			// Amount of pixels to move the parallax background per slide step
 			parallaxBackgroundHorizontal: null,
 			parallaxBackgroundVertical: null,
@@ -723,6 +729,10 @@
 
 			dom.background.style.backgroundImage = 'url("' + config.parallaxBackgroundImage + '")';
 			dom.background.style.backgroundSize = config.parallaxBackgroundSize;
+			if( config.parallaxBackgroundPosition ) {
+				dom.background.style.backgroundPosition = config.parallaxBackgroundPosition;
+			}
+			dom.background.style.backgroundRepeat = config.parallaxBackgroundRepeat;
 
 			// Make sure the below properties are set on the element - these properties are
 			// needed for proper transitions to be set on the element via CSS. To remove
@@ -739,7 +749,6 @@
 			dom.wrapper.classList.remove( 'has-parallax-background' );
 
 		}
-
 	}
 
 	/**
@@ -2773,7 +2782,7 @@
 	 */
 	function updateParallax() {
 
-		if( config.parallaxBackgroundImage ) {
+		if( config.parallaxBackgroundImage && !config.parallaxBackgroundPosition ) {
 
 			var horizontalSlides = dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ),
 				verticalSlides = dom.wrapper.querySelectorAll( VERTICAL_SLIDES_SELECTOR );
